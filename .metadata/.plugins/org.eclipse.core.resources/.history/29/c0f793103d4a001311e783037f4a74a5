@@ -1,0 +1,19 @@
+package travlingSalesman;
+
+import java.util.ArrayList;
+
+public class Main {
+	
+	private Traveler traveler;
+	private ArrayList<City> cities = new ArrayList<City>();
+	
+	public Main(){
+		
+	}
+	
+	public static void main(String args[]){
+		Main main = new Main();
+	}
+}
+
+

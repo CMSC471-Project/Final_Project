@@ -1,0 +1,24 @@
+package travlingSalesman;
+
+public class City {
+	
+	private boolean isVisited;
+	private String cityName;
+	
+	public City(boolean isVisited, String cityName){
+		this.isVisited = isVisited;
+		this.cityName = cityName;
+	}
+	
+	public boolean getIsVisited(){
+		return isVisited;
+	}
+	
+	public String getCityName(){
+		return cityName;
+	}
+	
+	public void setIsVisited(boolean visited){
+		isVisited = visited;
+	}
+}
