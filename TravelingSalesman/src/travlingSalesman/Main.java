@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class readFile {
 	
 	private Traveler traveler;
 	private ArrayList<City> cities = new ArrayList<City>();
@@ -20,7 +20,7 @@ public class Main {
 	private City startCity;
 	
 	/**
-	 * Check to see if goal state is met
+	 * Check to see if all states visited
 	 * @return
 	 */
 	public boolean isGoalState(){
@@ -44,11 +44,11 @@ public class Main {
 	}
 	
 	/**
-	 * Main function that runs the program
+	 * read data from the file
 	 * @param inFile
 	 * @param outFile
 	 */
-	public Main(FileInputStream inFile, FileWriter outFile){
+	public readFile(FileInputStream inFile, FileWriter outFile){
 		this.inFile = inFile;
 		this.outFile = outFile;
 		traveler = new Traveler();
@@ -63,8 +63,8 @@ public class Main {
 		//setting up the start city of the traveler
 		startCity = new City(cities.get(0).getCityX(), cities.get(0).getCityY(), false);
 		cities.remove(0);
-		traveler.setXPosition(cities.get(0).getCityX());
-		traveler.setYPosition(cities.get(0).getCityY());
+		traveler.setXPosition(startCity.getCityX());
+		traveler.setYPosition(startCity.getCityY());
 		
 		test();
 	}
@@ -89,7 +89,7 @@ public class Main {
 		try {
 			inFile = new FileInputStream(args[0]);
 			outFile = new FileWriter(args[1]);
-			Main main = new Main(inFile, outFile);
+			readFile file = new readFile(inFile, outFile);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
