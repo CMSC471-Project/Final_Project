@@ -1,0 +1,58 @@
+package travlingSalesman;
+
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+	
+	private Traveler traveler;
+	private ArrayList<City> cities = new ArrayList<City>();
+	private Scanner scanner;
+	private FileInputStream inFile;
+	private FileWriter outFile;
+	private BufferedWriter writer;
+	
+	public Main(FileInputStream inFile, FileWriter outFile){
+		this.inFile = inFile;
+		this.outFile = outFile;
+		writer = new BufferedWriter(outFile);
+		traveler = new Traveler();
+		scanner = new Scanner(inFile);
+		
+		while(scanner.hasNext()){
+			City city = new City(scanner.nextInt(), scanner.nextInt(), false);
+			cities.add(city);
+		}
+		
+		for(int i = 0; i < cities.size(); i++){
+			try {
+				writer.write(cities.get(i).getCityX() + " " + cities.get(i).getCityY() + "\n");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		System.exit(0);
+	}
+	
+	public static void main(String args[]){
+		FileInputStream inFile;
+		FileWriter outFile;
+		try {
+			inFile = new FileInputStream(args[0]);
+			outFile = new FileWriter(args[1]);
+			Main main = new Main(inFile, outFile);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+

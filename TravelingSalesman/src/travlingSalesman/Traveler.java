@@ -6,7 +6,8 @@ public class Traveler {
 	private int yPosition;
 	
 	public Traveler(){
-		
+		xPosition = 0;
+		yPosition = 0;
 	}
 	
 	public int getXPositition(){

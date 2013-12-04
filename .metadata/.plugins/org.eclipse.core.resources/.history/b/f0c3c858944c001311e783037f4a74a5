@@ -1,0 +1,85 @@
+package travlingSalesman;
+
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+	
+	private Traveler traveler;
+	private ArrayList<City> cities = new ArrayList<City>();
+	private Scanner scanner;
+	private FileInputStream inFile;
+	private FileWriter outFile;
+	private BufferedWriter writer;
+	private boolean isGoal;
+	
+	/**
+	 * Check to see if goal state is met
+	 * @return
+	 */
+	public boolean isGoalState(){
+		isGoal = true;
+		for(int i = 0; i < cities.size(); i++){
+			if(!cities.get(i).getIsVisited()){
+				isGoal = false;
+				i = cities.size();
+			}
+		}
+
+		return isGoal;
+	}
+	
+	/**
+	 * Main function that runs the program
+	 * @param inFile
+	 * @param outFile
+	 */
+	public Main(FileInputStream inFile, FileWriter outFile){
+		this.inFile = inFile;
+		this.outFile = outFile;
+		traveler = new Traveler();
+		scanner = new Scanner(inFile);
+		
+		//reading in each coordinates of the cities and adding it to the ArrayList, cities
+		while(scanner.hasNext()){
+			City city = new City(scanner.nextInt(), scanner.nextInt(), false);
+			cities.add(city);
+		}
+		
+		//setting up the start city of the traveler
+		City startCity = new City(cities.get(0).getCityX(), cities.get(0).getCityY(), false);
+		cities.remove(0);
+		traveler.setXPosition(cities.get(0).getCityX());
+		traveler.setYPosition(cities.get(0).getCityY());
+		
+		test();
+	}
+	
+	public void test(){
+		System.out.println(ci)
+		for(int i = 0; i < cities.size(); i++){
+			System.out.println(cities.get(i).getCityX() + " " + cities.get(i).getCityY());
+		}
+	}
+	
+	public static void main(String args[]){
+		FileInputStream inFile;
+		FileWriter outFile;
+		try {
+			inFile = new FileInputStream(args[0]);
+			outFile = new FileWriter(args[1]);
+			Main main = new Main(inFile, outFile);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
